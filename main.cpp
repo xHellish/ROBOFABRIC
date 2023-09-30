@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Funciones.h"
 
-
 int main(int argc, char** argv) {
 	/*
 	//thread hiloTick(tick);
@@ -13,17 +12,15 @@ int main(int argc, char** argv) {
 	//hiloTick.join();
 	*/
 	ListaString * ola = new ListaString();
-	/*
-	ola->insertar("ola");
-	ola->insertar("ola1");
-	ola->insertar("ola2");
-	ColaPedidos * pedidos = new ColaPedidos();
-	pedidos->encolar(new Nodo("Terminal", ola));
-	pedidos->imprimir();
-	*/
 	cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
 	ColaPedidos * cola = analizarCarpeta("C:/Users/Usuario/Desktop/robofabric/ROBOFABRIC/Sistema/Pedidos/Pendientes");
 	cola->imprimir();
+
+	extraerCliente("A002	ola		3")->imprimir();
+	cout << endl;
+	ListaCliente * clientes = agregarClientes("C:/Users/Usuario/Desktop/robofabric/ROBOFABRIC/Sistema\\Clientes.txt");
+	clientes->imprimir();
+	
 	
 	
 	return 0;

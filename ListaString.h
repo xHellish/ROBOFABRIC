@@ -20,7 +20,7 @@ struct NodoStr{
 struct ListaString {
 	
 	NodoStr* pn; // Primer nodo.
-	NodoStr* un; //Ultimo Nodo
+	NodoStr* un; //Ultimo Ndo
 	
 	ListaString(){
 		pn = NULL;
@@ -55,4 +55,14 @@ struct ListaString {
         }
         cout << endl;
     }
+    
+    int lenght(){
+    	int contador = 0;
+    	NodoStr * tmp = pn;
+    	while (tmp != NULL) {
+            contador++;
+            tmp = tmp->siguiente;
+        }
+        return contador;
+	}
 };

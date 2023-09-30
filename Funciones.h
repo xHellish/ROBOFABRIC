@@ -11,6 +11,20 @@ using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
 
+//Convertir string a integer--------------------
+int strToInt(string str){
+	int result = 0;
+	int i = 0;
+	while (i < str.length() && isdigit(str[i])) {
+		if (i != ' '){
+			result = result * 10 + (str[i] - '0');	
+		}
+        
+        i++;
+    }
+    return result;
+}
+
 // --------- Leer archivo TXT. ---------- // 
 ListaString* leerTXT(string ubicacion) {
     ifstream archivo(ubicacion.c_str());
@@ -52,6 +66,46 @@ ColaPedidos * analizarCarpeta(string rutaCarpeta) {
     
 	return colaPendientes;
   
+}
+
+// Extraer los datos del cliente de la linea del txt---------------------
+Cliente * extraerCliente(string linea){
+	string codigo = "";
+	string nombre = "";
+	int prioridad = 0;
+	
+	int cont = 0;
+	string dato = "";
+	
+	while(linea != "" ){
+		char letra = linea[0];
+		linea = linea.substr(1);
+		if (letra != '\t') {
+			dato += letra;
+		}
+		
+		else {
+			if (cont == 0) codigo = dato;
+			else if (cont == 1) nombre = dato;
+			dato = "";
+			cont ++;
+		}
+	} 
+	prioridad = strToInt(dato);
+	return new Cliente(codigo, nombre, prioridad);
+}
+
+//------Agregar cliente del txt a la lista de clientes-------//
+ListaCliente * agregarClientes(string ubicacion){
+	ListaCliente * clientes = new ListaCliente();
+	
+	ListaString * stringClientes = leerTXT(ubicacion);
+	NodoStr * tmp = stringClientes->pn;
+	while (tmp != NULL) {
+        clientes->insertarAlFinal(extraerCliente(tmp->dato));
+        tmp = tmp->siguiente;
+    }
+    return clientes;
 }
 
 // --------- Timer ------------ //
