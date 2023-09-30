@@ -22,7 +22,8 @@ struct Nodo{
 	
 	void imprimir(){
 		
-        cout << "|" << nombreArchivo << endl;
+        cout << "Nombre: " << nombreArchivo << endl;
+        datosNodo->imprimir();
         
 	}
 };
@@ -30,13 +31,13 @@ struct Nodo{
 struct ColaPedidos {
 	
 	Nodo* frente; // Primer nodo.
-	Nodo* fondo; // Último nodo.
+	Nodo* fondo; // Ãšltimo nodo.
 	
 	ColaPedidos(){
 		frente = fondo = NULL;
 	}
 	
-	// ¿Está vacía?
+	// Â¿EstÃ¡ vacÃ­a?
 	bool isEmpty(){
 		 return frente == NULL;
 	}

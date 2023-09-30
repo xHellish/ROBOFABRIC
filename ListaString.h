@@ -13,21 +13,21 @@ struct NodoStr{
 	}
 	
 	void imprimir(){
-        cout << "|" << dato << endl;  
+        cout << dato << endl;  
 	}
 };
 
 struct ListaString {
 	
 	NodoStr* pn; // Primer nodo.
-	NodoStr* un;
+	NodoStr* un; //Ultimo Nodo
 	
 	ListaString(){
 		pn = NULL;
 		un = NULL;
 	}
 	
-	// ¿Está vacía?
+	// Â¿EstÃ¡ vacÃ­a?
 	bool isEmpty(){
 		 return pn == NULL;
 	}

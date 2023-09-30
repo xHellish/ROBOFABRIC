@@ -15,34 +15,22 @@ using namespace std::chrono;
 ListaString* leerTXT(string ubicacion) {
     ifstream archivo(ubicacion.c_str());
     string linea;
-    int contadorArray = 0;
-
-    // Contar las l�neas en el archivo
-    while (getline(archivo, linea)) {
-        contadorArray++;
-    }
+	ListaString* datosPedidoLista = new ListaString();
 
     // Volver al inicio del archivo
     archivo.clear();
     archivo.seekg(0, ios::beg);
-
-    //string* datosTXT = new string[contadorArray];
-    ListaString* datosPedidoLista = new ListaString();
     
-    //contadorArray = 0;
-	
+	//Insertar lineas a la lista
     while (getline(archivo, linea)) {
-        cout << linea << endl;
-        //datosTXT[contadorArray] = linea;
-        datosPedidoLista->insertar(linea);
-        //contadorArray++;
+        datosPedidoLista->insertar((string)linea);
     }
     archivo.close();
-	
+    
     return datosPedidoLista;
 }
 // ----- Analizar carpeta -----> Nombre de cada archivo ----- //
-void analizarCarpeta(string rutaCarpeta) {
+ColaPedidos * analizarCarpeta(string rutaCarpeta) {
 
     WIN32_FIND_DATA findFileData;
     HANDLE hFind = FindFirstFile((rutaCarpeta + "\\*").c_str(), &findFileData);
@@ -52,10 +40,9 @@ void analizarCarpeta(string rutaCarpeta) {
     if (hFind != INVALID_HANDLE_VALUE) {
         do {
             if (!(findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-                //cout << findFileData.cFileName << endl;
-                colaPendientes->encolar(new Nodo(findFileData.cFileName, leerTXT(rutaCarpeta+findFileData.cFileName)));
-                
-                
+            	ListaString * lista = leerTXT(rutaCarpeta+"\\"+findFileData.cFileName);
+                colaPendientes->encolar(new Nodo(findFileData.cFileName, lista));
+				  
             }
         } while (FindNextFile(hFind, &findFileData) != 0);
         FindClose(hFind);
@@ -63,9 +50,7 @@ void analizarCarpeta(string rutaCarpeta) {
         cerr << "Error al abrir la carpeta" << endl;
     }
     
-    colaPendientes->imprimir();
-
-    colaPendientes->peek()->imprimir();
+	return colaPendientes;
   
 }
 
