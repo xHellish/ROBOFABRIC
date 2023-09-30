@@ -9,4 +9,4 @@ struct robotAlistador {
 	robotAlistador(){
 		encendido = true;
 	}
-}
+};
