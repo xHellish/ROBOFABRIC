@@ -108,6 +108,20 @@ ListaCliente * agregarClientes(string ubicacion){
     return clientes;
 }
 
+// ------------ Cliente prio ------------ //
+int clientePrio(string nombreCliente){
+	
+	
+	ListaString* clientes = leerTXT("C:\\Users\\Hellish\\Desktop\\Programa1_CPP\\ROBOFABRIC\\Sistema\\Clientes.txt");
+	clientes->imprimir();
+	
+	int prio = clientes->prioCliente(nombreCliente);
+	
+	
+	
+	return prio;
+}
+
 // --------- Timer ------------ //
 void tick() {
     while (true) {

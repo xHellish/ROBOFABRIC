@@ -11,15 +11,20 @@ int main(int argc, char** argv) {
 	
 	//hiloTick.join();
 	*/
+	
 	ListaString * ola = new ListaString();
 	cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
-	ColaPedidos * cola = analizarCarpeta("C:/Users/Usuario/Desktop/robofabric/ROBOFABRIC/Sistema/Pedidos/Pendientes");
+	ColaPedidos * cola = analizarCarpeta("C:\\Users\\Hellish\\Desktop\\Programa1_CPP\\ROBOFABRIC\\Sistema\\Pedidos\\Pendientes");
 	cola->imprimir();
 
 	extraerCliente("A002	ola		3")->imprimir();
 	cout << endl;
-	ListaCliente * clientes = agregarClientes("C:/Users/Usuario/Desktop/robofabric/ROBOFABRIC/Sistema\\Clientes.txt");
+	ListaCliente * clientes = agregarClientes("C:\\Users\\Hellish\\Desktop\\Programa1_CPP\\ROBOFABRIC\\Sistema\\Clientes.txt");
 	clientes->imprimir();
+	
+	cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
+	
+	cout << clientePrio("ABC S.A.");
 	
 	
 	

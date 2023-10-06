@@ -15,6 +15,46 @@ struct NodoStr{
 	void imprimir(){
         cout << dato << endl;  
 	}
+	
+	// obtener nombre Nodo
+	string nombreCliente(){
+		string cadena = "";
+		int leerCont = 0;
+		
+		for (char ch : dato){
+			if (ch == '\t'){
+				cout << "Tab ";
+				leerCont++;	
+			}
+			
+			if (leerCont == 1){
+				cadena = cadena + ch;
+			}	
+		}
+		
+		return cadena;	
+	}
+	
+	// obtener prio Nodo
+	int prioCliente(){
+		
+		string cadena = "";
+		int leerCont = 0;
+		
+		for (char ch : dato){
+			if (ch == '\t'){
+				cout << "Tab ";
+				leerCont++;	
+			}
+			
+			if (leerCont == 2){
+				cadena = cadena + ch;
+			}
+		}
+		
+		int prio = stoi(cadena);
+		return prio;
+	}
 };
 
 struct ListaString {
@@ -52,6 +92,7 @@ struct ListaString {
         while (tmp != NULL) {
             tmp->imprimir();
             tmp = tmp->siguiente;
+            
         }
         cout << endl;
     }
@@ -65,4 +106,20 @@ struct ListaString {
         }
         return contador;
 	}
+	
+	int prioCliente(string _nombreCliente){
+		
+		NodoStr* tmp = pn;
+		
+		while (tmp != NULL){
+			
+			cout << "Nombre: " + tmp->nombreCliente() + "--- >>> " + _nombreCliente<< endl;
+			if (tmp->nombreCliente() == _nombreCliente){
+				
+				cout << _nombreCliente;
+				return tmp->prioCliente();
+			}
+			tmp = tmp->siguiente;
+		}
+	}	
 };
